@@ -14,10 +14,36 @@ class BallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
-          title: Text('Ask Me Anything'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                  Icons.email,
+                color: Colors.blue,
+              )
+            ),
+            IconButton(
+              icon: Icon(
+                  Icons.notifications_none,
+                color: Colors.blue,
+              ),
+            ),
+          ],
+          leading: Icon(
+            Icons.question_answer,
+            color: Colors.blue,
+          ),
+          elevation: 20,
+          backgroundColor: Colors.white12,
+          title: Center(
+              child: Text(
+                  'Ask Me Anything',
+                style: TextStyle(
+                  color: Colors.blue,
+                ),
+              ),
+          ),
         ),
         body: Ball(),
       ),
@@ -38,9 +64,12 @@ class _BallState extends State<Ball> {
     return Center(
       child: Container(
         child: FlatButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             onPressed: () {
               setState(() {
-              ballNumber = Random().nextInt(5) + 1;
+              ballNumber = Random(DateTime.now().millisecond).nextInt(5) + 1;
+              print(ballNumber);
               });
             },
             child: Image.asset(
